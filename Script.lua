@@ -11,10 +11,18 @@ function Module:Utils(Type, ...)
     elseif Type == "TeleportPlayer" then
         local HRP = Module:Utils("GetPlayerCharacterPart", { "HumanoidRootPart" })
         if HRP then
-            if UtilData[2] then
-                HRP.CFrame = UtilData[1].CFrame * UtilData[2]
+            local TargetCFrame
+        
+            if typeof(UtilData[1]) == "CFrame" then
+                TargetCFrame = UtilData[1]
             else
-                HRP.CFrame = UtilData[1].CFrame
+                TargetCFrame = UtilData[1]:GetPivot()
+            end
+
+            if UtilData[2] and typeof(UtilData[2]) == "CFrame" then
+                HRP.CFrame = TargetCFrame * UtilData[2]
+            else
+                HRP.CFrame = TargetCFrame
             end
         end
 
