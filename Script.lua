@@ -16,7 +16,7 @@ function Module:Utils(Type, ...)
             if typeof(UtilData[1]) == "CFrame" then
                 TargetCFrame = UtilData[1]
             else
-                TargetCFrame = UtilData[1]:GetPivot()
+                TargetCFrame = UtilData[1].CFrame
             end
 
             if UtilData[2] and typeof(UtilData[2]) == "CFrame" then
